@@ -11,6 +11,9 @@ print("Model loaded successfully.")
 
 scaler = joblib.load('scaler.joblib')  # Load the scaler
 
+@app.route('/')
+def home():
+    return "Flask app is running!"
 
 @app.route('/predict', methods=['POST'])
 def predict():
@@ -57,4 +60,4 @@ def predict():
 
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(debug=True, port=5001)  # Set the port to 5001

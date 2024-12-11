@@ -74,10 +74,11 @@ X = df.drop(columns=['STATUS'])
 y = df['STATUS']
 
 # Sampling to reduce memory usage (if dataset is too large)
-X_sample, _, y_sample, _ = train_test_split(X, y, test_size=0.95, random_state=42)  # Keeping 5% of data for faster processing
+X_sample, _, y_sample, _ = train_test_split(X, y, test_size=0.2, random_state=42)  # Keeping 5% of data for faster processing
 
 # Split the sampled data into training and testing sets
-X_train, X_test, y_train, y_test = train_test_split(X_sample, y_sample, test_size=0.2, random_state=42)
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42, stratify=y)
+
 
 # ---------------- Scale Features ----------------
 
@@ -146,4 +147,17 @@ joblib.dump(label_encoders, 'label_encoders.joblib')  # Save the label encoders
 features = df.drop(columns=['STATUS'])
 print(features.columns)
 print(features.dtypes)
+# Check unique values in the STATUS column of the dataset
+print(df['STATUS'].unique())
 
+# For Logistic Regression
+print("Class labels for Logistic Regression:", logistic_model.classes_)
+
+# For Decision Tree
+print("Class labels for Decision Tree:", tree_model.classes_)
+
+# Select a specific row by index (for example, index 0)
+entry = df.iloc[0]
+
+# Print the values of the selected entry
+print(entry)
