@@ -77,7 +77,7 @@ y = df['STATUS']
 X_sample, _, y_sample, _ = train_test_split(X, y, test_size=0.2, random_state=42)  # Keeping 5% of data for faster processing
 
 # Split the sampled data into training and testing sets
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.5, random_state=42, stratify=y)
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=42, stratify=y)
 
 
 # ---------------- Scale Features ----------------
